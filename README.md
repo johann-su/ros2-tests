@@ -8,10 +8,10 @@ Tutorial Series: https://youtube.com/playlist?list=PLLSegLrePWgJudpPUof4-nVFHGkB
 **ROS2 Versions:**
 | Name | Release Date | EOL | LTS |
 | --- | --- | --- | --- |
-| Kilted Kaiju | May 23, 2025 | December 2026 | No |
-| Jazzy Jackal | May 23, 2024 | May 2029 | Yes |
-| Iron Irwini | May 23, 2023 | December 4, 2024 | No |
-| Humble Hawksbill | May 23, 2022 | May 2027 | Yes |
+| Kilted Kaiju | May 23, 2025 | December 2026 | ❌ |
+| Jazzy Jackal | May 23, 2024 | May 2029 | ✅ |
+| Iron Irwini | May 23, 2023 | December 4, 2024 | ❌ |
+| Humble Hawksbill | May 23, 2022 | May 2027 | ✅ |
 
 ---
 

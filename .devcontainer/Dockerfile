@@ -34,6 +34,7 @@ USER $USERNAME
 # Setup bashrc
 ## Make ros2 public to the system via `source` command
 RUN echo "source /opt/ros/$ROS_DISTRO/setup.bash" >> /home/$USERNAME/.bashrc
+RUN echo "source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash" >> /home/$USERNAME/.bashrc
 
 RUN echo "if [ -f \"/workspaces/ros2_ws/install/setup.bash\" ]; then" >> /home/$USERNAME/.bashrc \
     && echo "    source /workspaces/ros2_ws/install/setup.bash" >> /home/$USERNAME/.bashrc \
@@ -42,10 +43,4 @@ RUN echo "if [ -f \"/workspaces/ros2_ws/install/setup.bash\" ]; then" >> /home/$
     && echo "    echo \"Make sure to build your package(s).\"" >> /home/$USERNAME/.bashrc \
     && echo "fi" >> /home/$USERNAME/.bashrc
 
-# [Optional] Set the default user. Omit if you want to keep the default as root.
-
-# CMD ["/bin/bash"]
-# Setup entrypoint
-COPY ./ros_entrypoint.sh /
-ENTRYPOINT ["/ros_entrypoint.sh"]
-CMD ["bash"]
+CMD ["/bin/bash"]
