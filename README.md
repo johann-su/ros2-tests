@@ -16,6 +16,23 @@ Tutorial Series: https://youtube.com/playlist?list=PLLSegLrePWgJudpPUof4-nVFHGkB
 ---
 
 **Vocabulary:**
+- **Workspace**: A directory containing ROS2 packages, README etc.
+- **Package**: A collection of nodes, libraries, and other resources. Can be external [ROS2 index](https://index.ros.org/packages/) or custom. See [Creating a Package](#creating-a-package).
+    - **Build System**: `ament_cmake` for C++ packages, `ament_python` for Python packages.
+    - **Dependencies**: Other packages that the package relies on, specified in `package.xml`.
+    - **Build System**: `ament_cmake` for C++ packages, `ament_python` for Python packages.
+    - **Dependencies**: Other packages that the package relies on, specified in `package.xml`.
+- **Interface**: Type definition for messages, services, and actions. See [Interfaces](https://docs.ros.org/en/jazzy/Concepts/Basic/About-Interfaces.html)
+
+Example `srv/HelloWorld.srv`:
+```plaintext
+# request
+string str
+---
+# response
+string str
+```
+
 - **Node**: A process that performs computation. See [Understanding Nodes](https://docs.ros.org/en/jazzy/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Nodes/Understanding-ROS2-Nodes.html)
 - **Topic**: A named bus over which nodes exchange messages. See [Understanding Topics](https://docs.ros.org/en/jazzy/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Topics/Understanding-ROS2-Topics.html)
 
@@ -34,8 +51,19 @@ Graph: UI node introspection tool.
 rqt_graph
 ```
 
-- **Workspace**: A directory containing ROS2 packages, README etc.
-- **Package**: A collection of nodes, libraries, and other resources.
+- **service**: req/res communication model instead of pub/sub. Usefull for computations and performing actions on a node. See [Understanding Services](https://docs.ros.org/en/jazzy/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Services/Understanding-ROS2-Services.html).
+    - **service client**: a node that calls a service.
+    - **service server**: a node that provides a service.
+- **parameter**: a variable that can be set and retrieved by nodes, useful for configuration. Can only be modified at startup. Can be stored in YAML files. See [Understanding Parameters](https://docs.ros.org/en/jazzy/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Parameters/Understanding-ROS2-Parameters.html).
+
+Running service with parameter yaml file:
+```bash
+ros2 run hello_world_py_pkg simple_params --ros-args --params-file ./src/hello_world_py_pkg/config/params.yaml
+```
+
+- **action**: long running task that can be preempted or cancelled. See [Understanding Actions](https://docs.ros.org/en/jazzy/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Actions/Understanding-ROS2-Actions.html).
+
+![ROS2 Action](https://docs.ros.org/en/jazzy/_images/Action-SingleActionClient.gif)
 
 ### Creating a Package
 
@@ -106,20 +134,6 @@ int main(int argc, char **argv)
     return 0;
 }
 ```
-
-- **service**: req/res communication model instead of pub/sub. Usefull for computations and performing actions on a node. See [Understanding Services](https://docs.ros.org/en/jazzy/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Services/Understanding-ROS2-Services.html).
-    - **service client**: a node that calls a service.
-    - **service server**: a node that provides a service.
-- **parameter**: a variable that can be set and retrieved by nodes, useful for configuration. Can only be modified at startup. Can be stored in YAML files. See [Understanding Parameters](https://docs.ros.org/en/jazzy/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Parameters/Understanding-ROS2-Parameters.html).
-
-Running service with parameter yaml file:
-```bash
-ros2 run hello_world_py_pkg simple_params --ros-args --params-file ./src/hello_world_py_pkg/config/params.yaml
-```
-
-- **action**: long running task that can be preempted or cancelled. See [Understanding Actions](https://docs.ros.org/en/jazzy/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Actions/Understanding-ROS2-Actions.html).
-
-![ROS2 Action](https://docs.ros.org/en/jazzy/_images/Action-SingleActionClient.gif)
 
 ### Building
 

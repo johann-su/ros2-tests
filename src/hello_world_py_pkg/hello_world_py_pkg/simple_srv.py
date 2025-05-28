@@ -3,6 +3,7 @@ import rclpy
 from rclpy.node import Node
 from example_interfaces.srv import AddTwoInts, AddTwoInts_Request, AddTwoInts_Response
 
+
 class SimpleService(Node):
     def __init__(self):
         super().__init__('simple_service')

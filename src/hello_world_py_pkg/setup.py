@@ -27,6 +27,8 @@ setup(
             "simple_client = hello_world_py_pkg.simple_client:main",
             "simple_srv = hello_world_py_pkg.simple_srv:main",
             "simple_params = hello_world_py_pkg.simple_params:main",
+            "count_until_action_server = hello_world_py_pkg.count_until_action_server:main",
+            "count_until_action_client = hello_world_py_pkg.count_until_action_client:main",	
         ],
     },
 )

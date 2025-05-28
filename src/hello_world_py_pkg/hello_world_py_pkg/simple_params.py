@@ -2,6 +2,7 @@
 import rclpy
 from rclpy.node import Node
 
+
 class SimpleParams(Node):
     def __init__(self):
         super().__init__('simple_params')
