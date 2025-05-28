@@ -16,8 +16,8 @@ Tutorial Series: https://youtube.com/playlist?list=PLLSegLrePWgJudpPUof4-nVFHGkB
 ---
 
 **Vocabulary:**
-- **Node**: A process that performs computation.
-- **Topic**: A named bus over which nodes exchange messages.
+- **Node**: A process that performs computation. See [Understanding Nodes](https://docs.ros.org/en/jazzy/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Nodes/Understanding-ROS2-Nodes.html)
+- **Topic**: A named bus over which nodes exchange messages. See [Understanding Topics](https://docs.ros.org/en/jazzy/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Topics/Understanding-ROS2-Topics.html)
 
 Example: <br>
 Terminal 1:
@@ -107,8 +107,19 @@ int main(int argc, char **argv)
 }
 ```
 
-- **service**: req/res communication model instead of pub/sub. Usefull for computations and settings.
+- **service**: req/res communication model instead of pub/sub. Usefull for computations and performing actions on a node. See [Understanding Services](https://docs.ros.org/en/jazzy/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Services/Understanding-ROS2-Services.html).
+    - **service client**: a node that calls a service.
+    - **service server**: a node that provides a service.
+- **parameter**: a variable that can be set and retrieved by nodes, useful for configuration. Can only be modified at startup. Can be stored in YAML files. See [Understanding Parameters](https://docs.ros.org/en/jazzy/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Parameters/Understanding-ROS2-Parameters.html).
 
+Running service with parameter yaml file:
+```bash
+ros2 run hello_world_py_pkg simple_params --ros-args --params-file ./src/hello_world_py_pkg/config/params.yaml
+```
+
+- **action**: long running task that can be preempted or cancelled. See [Understanding Actions](https://docs.ros.org/en/jazzy/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Actions/Understanding-ROS2-Actions.html).
+
+![ROS2 Action](https://docs.ros.org/en/jazzy/_images/Action-SingleActionClient.gif)
 
 ### Building
 
@@ -118,3 +129,18 @@ colcon build
 ```
 - `--symlink-install`: useful for development with python - no need to rebuild after edit.
 - `--packages-select <package_name>`: build only the specified package.
+
+**Important**: After building, source the setup file to make the packages available in the current terminal session:
+```bash
+source ~/.bashrc
+```
+
+### Running Nodes
+To run a node, use the `ros2 run` command:
+```bash
+ros2 run <package_name> <node_executable>
+```
+Example:
+```bash
+ros2 run hello_world_py_pkg hello_world_node
+```

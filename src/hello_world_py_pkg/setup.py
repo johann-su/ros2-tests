@@ -26,6 +26,7 @@ setup(
             "simple_sub = hello_world_py_pkg.simple_sub:main",
             "simple_client = hello_world_py_pkg.simple_client:main",
             "simple_srv = hello_world_py_pkg.simple_srv:main",
+            "simple_params = hello_world_py_pkg.simple_params:main",
         ],
     },
 )
