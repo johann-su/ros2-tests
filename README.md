@@ -1,6 +1,6 @@
 # Learning ROS2
 
-Official ROS2 jazzy documentation: https://docs.ros.org/en/jazzy/index.html
+Official ROS2 jazzy documentation: https://docs.ros.org/en/jazzy/index.html <br>
 Tutorial Series: https://youtube.com/playlist?list=PLLSegLrePWgJudpPUof4-nVFHGkB62Izy&si=frFDZWzGmANyw5lF
 
 ## Basics
@@ -98,12 +98,17 @@ public:
 int main(int argc, char **argv)
 {
     rclcpp::init(argc, argv);
+
     auto node = std::make_shared<CustomNode>();
     rclcpp::spin(node);
+    
     rclcpp::shutdown();
     return 0;
 }
 ```
+
+- **service**: req/res communication model instead of pub/sub. Usefull for computations and settings.
+
 
 ### Building
 

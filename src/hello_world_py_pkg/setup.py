@@ -24,6 +24,8 @@ setup(
             "custom_node = hello_world_py_pkg.custom_node:main",
             "simple_pub = hello_world_py_pkg.simple_pub:main",
             "simple_sub = hello_world_py_pkg.simple_sub:main",
+            "simple_client = hello_world_py_pkg.simple_client:main",
+            "simple_srv = hello_world_py_pkg.simple_srv:main",
         ],
     },
 )
