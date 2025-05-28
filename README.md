@@ -161,7 +161,8 @@ ros2 run hello_world_py_pkg hello_world_node
 ```
 
 #### Launch files
-Launch multiple nodes with specified parameters. <br>
+
+Launch multiple nodes with specified parameters ([more info](https://docs.ros.org/en/jazzy/Tutorials/Intermediate/Launch/Launch-Main.html)). <br>
 Either launch directory in the package or a seperate bringup package.
 
 Launch file template (end in `.launch.py`):
@@ -207,3 +208,93 @@ Add `<depend>` tags in `package.xml` to specify dependencies for your package. E
     - [`rosdep/python.yaml`](https://github.com/ros/rosdistro/blob/master/rosdep/python.yaml)  contains the Python dependencies
 The key is the name of the package from these yaml files.
 
+## Ros Packages
+
+### Turtlesim
+A simple simulator for testing stuff.
+
+List all executables in the package:
+```bash
+ros2 pkg executables turtlesim
+```
+
+Run a single node:
+```bash	
+ros2 run turtlesim turtlesim_node
+```
+
+Add keyboard control to the turtle:
+```bash
+ros2 run turtlesim turtle_teleop_key
+```
+
+### tf2
+Package for broadcasting transformations ([more info](https://docs.ros.org/en/jazzy/Tutorials/Intermediate/Tf2/Tf2-Main.html)).
+
+Types of transformations:
+- **static**: Fixed transformations that do not change over time.
+- **dynamic**: Transformations that can change over time, such as moving robots or sensors.
+
+### URDF
+
+Unified Robot Description Format (URDF) - describe a robot and use it for simulation, visualization and kinematics ([more info](https://docs.ros.org/en/jazzy/Tutorials/Intermediate/URDF/URDF-Main.html)). 
+
+**Terminology:**
+- **Link**: A rigid body in the robot model. The following characteristics can be defined:
+    - **visual**: The visual representation of the link (e.g. mesh, geometry).
+    - **collision**: The collision representation of the link (e.g. mesh, geometry).
+    - **inertial**: The inertial properties of the link (e.g. mass, inertia matrix).
+- **Joint**: A connection between two links that allows relative motion with different DoF:
+    - **Revolut**: Discrete rotation around an axis (rotation with start and stop angle, e.g. robotic arm).
+    - **Continuous**: Continuous rotation around an axis (e.g. wheels).
+    - **Prismatic**: Linear translation along an axis (e.g. linear actuator).
+    - **Fixed**: No relative motion between links (e.g. base of a robot).
+
+**Note**: One link alsways has exactly one parent (except for the first one) but can have many children (connected through joins).
+
+Template for a URDF file `example.urdf.xacro`:
+```xml
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="robot_name">
+    <link name="link_name">
+        <visual>
+            <geometry>
+                <!-- Geometry of the link, e.g. box, cylinder, mesh -->
+            </geometry>
+            <origin xyz="x y z" rpy="roll pitch yaw"/>
+            <material name="material_name">
+                <!-- Material properties, e.g. color -->
+            </material>
+        </visual>
+        <collision>
+            <geometry>
+                
+            </geometry>
+            <origin xyz="x y z" rpy="roll pitch yaw"/>
+        </collision>
+        <inertial>
+            <mass value="mass_value"/>
+            <inertia ixx="ixx_value" ixy="ixy_value" ixz="ixz_value" iyy="iyy_value" iyz="iyz_value" izz="izz_value"/>
+            <origin xyz="x y z" rpy="roll pitch yaw"/>
+        </inertial>
+    </link>
+    <joint name="joint_name" type="joint_type">
+        <parent link="parent_link_name"/>
+        <child link="child_link_name"/>
+        <!-- Joint properties -->
+    </joint>
+    <!-- Additional links and joints -->
+</robot>
+```
+**Note**: Use `xacro` to process the URDF file, which allows for macros and parameters. To convert a `.xacro` file to a `.urdf` file, use:
+```bash
+ros2 run xacro xacro example.urdf.xacro -o example.urdf
+```
+
+### RViz
+
+launch RViz:
+```bash
+rviz2
+```
+
+### Gazebo
