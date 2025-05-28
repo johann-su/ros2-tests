@@ -137,7 +137,7 @@ int main(int argc, char **argv)
 
 ### Building
 
-ROS2 uses `colcon` for building packages.
+ROS2 uses `colcon` for building packages ([more info](https://docs.ros.org/en/jazzy/Tutorials/Beginner-Client-Libraries/Colcon-Tutorial.html)):
 ```bash
 colcon build
 ```
@@ -149,8 +149,9 @@ colcon build
 source ~/.bashrc
 ```
 
-### Running Nodes
-To run a node, use the `ros2 run` command:
+### Running/Launching Nodes
+
+To run a node, use the `ros2 run` command ([more info](https://docs.ros.org/en/jazzy/Tutorials/Beginner-CLI-Tools/Launching-Multiple-Nodes/Launching-Multiple-Nodes.html)):
 ```bash
 ros2 run <package_name> <node_executable>
 ```
@@ -158,3 +159,51 @@ Example:
 ```bash
 ros2 run hello_world_py_pkg hello_world_node
 ```
+
+#### Launch files
+Launch multiple nodes with specified parameters. <br>
+Either launch directory in the package or a seperate bringup package.
+
+Launch file template (end in `.launch.py`):
+```python
+from launch import LaunchDescription
+from launch_ros.actions import Node
+
+
+def generate_launch_description():
+    ld = LaunchDescription()
+
+    # Define nodes to launch
+
+    return ld
+```
+Example:
+```bash
+ros2 launch hello_world_py_pkg hello_world.launch.py
+```
+
+**Note**: Dont forget to add the dependencies in `package.xml`.
+
+### Dependency Management with `rosdep`
+
+- `rosdep update`: Update the rosdep database.
+- `rosdep install --from-paths src -y --ignore-src`: Install dependencies for the current workspace.
+    - `--from-paths src`: Specify the path to check for `package.xml`.
+    - `-y`: Automatically answer yes to prompts.
+    - `--ignore-src`: Ignore source packages, only install dependencies.
+
+Add `<depend>` tags in `package.xml` to specify dependencies for your package. Example:
+```xml
+<package format="3">
+    ...
+    <depend>package-key</depend>
+    ...
+</package>
+```
+`package-key` can be:
+- name of the package if it is a native ROS2 package **and** released into the ROS2 [index](https://github.com/ros/rosdistro) at `jazzy/distribution.yaml`.
+- if the package is not ROS2 native, it can be a system dependency (e.g. `libboost-dev`) or a Python package (e.g. `numpy`).
+    - [`rosdep/base.yaml`](https://github.com/ros/rosdistro/blob/master/rosdep/base.yaml) contains the apt system dependencies
+    - [`rosdep/python.yaml`](https://github.com/ros/rosdistro/blob/master/rosdep/python.yaml)  contains the Python dependencies
+The key is the name of the package from these yaml files.
+
