@@ -71,23 +71,30 @@ ros2 run hello_world_py_pkg simple_params --ros-args --params-file ./src/hello_w
 
 **Common Commands:**
 - `ros2 run <package_name> <node_executable>`: Run a node from a package.
+
 Node:
 - `ros2 node list`: List all running nodes.
 - `ros2 node info <node_name>`: Get information about a specific node.
+
 Topics:
 - `ros2 topic list`: List all active topics.
 - `ros2 topic echo <topic_name>`: Print messages from a topic to the console.
+
 Services:
 - `ros2 service list`: List all available services.
+
 Actions:
 - `ros2 action list`: List all active actions.
+
 Packages:
 - `ros2 pkg create <package_name>`: Create a new package ([more info](#creating-a-package)).
 - `ros2 pkg list`: List all installed packages.
 - `ros2 pkg executables <package_name>`: List all executables in a package.
+
 Interfaces:
 - `ros2 interface list`: List all available interfaces (messages, services, actions).
 - `ros2 interface show <interface_name>`: Show the definition of a specific interface.
+
 rqt:
 - `rqt`: Launch the rqt GUI for introspection and visualization.
 - `rqt_graph`: Launch the rqt graph tool to visualize the node and topic connections.
