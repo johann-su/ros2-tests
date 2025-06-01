@@ -1,9 +1,0 @@
-# Goal
-int64 target_count
-float64 period
----
-# Result
-int64 final_count
----
-# Feedback (optional)
-int64 current_count
