@@ -20,8 +20,6 @@ Tutorial Series: https://youtube.com/playlist?list=PLLSegLrePWgJudpPUof4-nVFHGkB
 - **Package**: A collection of nodes, libraries, and other resources. Can be external [ROS2 index](https://index.ros.org/packages/) or custom. See [Creating a Package](#creating-a-package).
     - **Build System**: `ament_cmake` for C++ packages, `ament_python` for Python packages.
     - **Dependencies**: Other packages that the package relies on, specified in `package.xml`.
-    - **Build System**: `ament_cmake` for C++ packages, `ament_python` for Python packages.
-    - **Dependencies**: Other packages that the package relies on, specified in `package.xml`.
 - **Interface**: Type definition for messages, services, and actions. See [Interfaces](https://docs.ros.org/en/jazzy/Concepts/Basic/About-Interfaces.html)
 
 Example `srv/HelloWorld.srv`:
@@ -294,6 +292,7 @@ ros2 run tf2_tools view_frames
 
 Template for a URDF file `example.urdf.xacro`:
 ```xml
+<?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="robot_name">
     <link name="link_name">
         <visual>
